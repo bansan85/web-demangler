@@ -1,8 +1,20 @@
+<app-dialog-popup #dialog>
+  <div dialog-header>
+    <span>Lighten's options</span>
+  </div>
+  <div dialog-body>
+    <dt>Count:</dt>
+    <dd>
+      <input type="number" [ngModel]="count" (ngModelChange)="onCount($event)" min="1" max="9" />
+    </dd>
+  </div>
+</app-dialog-popup>
+
 <app-textarea-two inputPlaceholder="Enter your JSON here" [inputChange]="lightenNumber">
   <div header-input>
     <h2>Your heavy JSON</h2>
   </div>
   <div header-output>
-    <h2>Your lighten JSON</h2>
+    <h2>Your lighten JSON<lucide-icon name="settings" (click)="dialog.openDialog()"></lucide-icon></h2>
   </div>
 </app-textarea-two>

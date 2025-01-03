@@ -6,6 +6,6 @@
 int main() {
   std::string input;
   std::getline(std::cin, input);
-  web_lighten::number(input);
+  web_lighten::number(input, 4);
   return 0;
 }

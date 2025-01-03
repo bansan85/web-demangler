@@ -1,5 +1,6 @@
 #include <cctype>
 #include <cmath>
+#include <stdexcept>
 #include <string>
 
 namespace web_lighten {
@@ -53,7 +54,11 @@ std::string dec(const std::string &num) {
 
 } // namespace
 
-std::string number(std::string num) {
+std::string number(std::string num, size_t size) {
+  if (size > 9) {
+    throw std::runtime_error("The parameter size must be smaller than 10.");
+  }
+
   size_t pos_null = num.find('\0');
   if (pos_null != std::string::npos) {
     num.resize(pos_null);
@@ -77,13 +82,13 @@ std::string number(std::string num) {
   }
 
   // Truncate if 0000 is found.
-  size_t pos0000 = num.find("0000");
+  size_t pos0000 = num.find(std::string(size, '0'));
   if (pos0000 != std::string::npos) {
     num = num.substr(0, pos0000);
   }
 
   // Truncate if 9999 is found.
-  size_t pos9999 = num.find("9999");
+  size_t pos9999 = num.find(std::string(size, '9'));
   if (pos9999 != std::string::npos) {
     num = num.substr(0, pos9999);
     size_t old_length = num.length();

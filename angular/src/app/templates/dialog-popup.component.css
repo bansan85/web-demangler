@@ -57,3 +57,7 @@ dialog lucide-icon[name="x"] {
   right: 0.5em;
   cursor: pointer;
 }
+
+.dialog-header-title {
+  margin-right: 1em;
+}
